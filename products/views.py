@@ -4,22 +4,20 @@ from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 
 from products.models import ProductCategory, Product, Basket
+from common.views import TitleMixin
 
 
-class IndexView(TemplateView):
+class IndexView(TitleMixin, TemplateView):
     template_name = 'products/index.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(IndexView, self).get_context_data(**kwargs)
-        context['title'] = 'Store'
-        return context
+    title = 'Store'
 
 
-class ProductListView(ListView):
+class ProductListView(TitleMixin, ListView):
     model = Product
     template_name = 'products/products.html'
     context_object_name = 'products'
     paginate_by = 3
+    title = 'Store - Каталог'
 
     def get_queryset(self):
         queryset = super(ProductListView, self).get_queryset()
@@ -28,7 +26,6 @@ class ProductListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(ProductListView, self).get_context_data(**kwargs)
-        context['title'] = 'Store - Каталог'
         context['categories'] = ProductCategory.objects.all()
         return context
 
