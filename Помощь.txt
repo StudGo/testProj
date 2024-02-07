@@ -1,0 +1,47 @@
+Django
+pillow
+flake8
+isort
+django-allauth
+psycopg2
+django-debug-toolbar(если не будет работат райти в реесты и поправить файл .js ввести text/javascript вместо text/explain)
+
+
+
+
+PostgreSQL
+Для windows: 
+
+cd C:\Program Files\PostgreSQL\{version}\bin, где PostgreSQL, установлен
+
+и потом
+
+psql -U postgres
+
+CREATE DATABASE store_db;
+CREATE ROLE store_username with password 'store_password';
+ALTER ROLE "store_username" WITH LOGIN;
+GRANT ALL PRIVILEGES ON DATABASE "store_db" to store_username;
+ALTER USER store_username CREATEDB;
+
+(866 ошибка)
+У кого на винде при создании бд через командную строку видите такое сообщение 
+
+ПРЕДУПРЕЖДЕНИЕ: Кодовая страница консоли (866) отличается от основной страницы Windows (1251). 8-битовые (русские) символы могут отображаться некорректно. Подробнее об этом смотрите документацию psql, раздел "Notes for Windows users". Введите "help", чтобы получить справку.
+
+Введите 
+
+psql \! chcp 1251
+
+
+
+Хотя использование в консоли psql даёт +10 к "хакирству", я в итоге через pgAdmin 4 открыл store_db и в её схеме  public поменял Owner на store_username, после чего миграция пошла.
+
+Возможно как альтернатива, можно зайти через psql в store_db и использовать SQL-команду:
+
+ALTER SCHEMA public OWNER TO store_username;
+
+
+Для того чтобы работали тесты надо добавить
+
+python manage.py dumpdata socialaccount.socialapp --output products/fixtures/socialapp.json  (это под виндой)
