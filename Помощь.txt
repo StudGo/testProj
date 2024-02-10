@@ -5,6 +5,9 @@ isort
 django-allauth
 psycopg2
 django-debug-toolbar(если не будет работат райти в реесты и поправить файл .js ввести text/javascript вместо text/explain)
+django-redis
+"celery[redis]"
+celery -A testProj worker -l INFO -P solo
 
 
 

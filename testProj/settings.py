@@ -89,6 +89,15 @@ INTERNAL_IPS = [
     'localhost',
 ]
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379/1',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    }
+}
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -166,6 +175,8 @@ EMAIL_PORT = 465
 EMAIL_HOST_USER = 'testingTe1@yandex.ru'
 EMAIL_HOST_PASSWORD = 'cssucrqwedpqgnpu'
 EMAIL_USE_SSL = True
+# Print console
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # OAuth
 
@@ -183,3 +194,8 @@ SOCIALACCOUNT_PROVIDERS = {
         ],
     }
 }
+
+# Celery
+
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
