@@ -29,7 +29,7 @@
                     {% endfor %}
                     </tbody>
                 </table>
-                <p class="float-right h4 mt-3">Итого 36 595,00 руб.</p>
+                <p class="float-right h4 mt-3">Итого {{ order.basket_history.total_sum|intcomma }} руб.</p>
             </div>
         </div>
     </div>
