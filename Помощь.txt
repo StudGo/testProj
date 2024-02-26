@@ -8,6 +8,7 @@ django-debug-toolbar(если не будет работат райти в ре�
 django-redis
 "celery[redis]"
 celery -A testProj worker -l INFO -P solo
+stripe listen --forward-to 127.0.0.1:8000/webhook/stripe/ (нужно установить страйп и указать путь к .exe в PATH)
 
 
 
