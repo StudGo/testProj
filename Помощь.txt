@@ -21,7 +21,7 @@ PostgreSQL
 
 cd C:\Program Files\PostgreSQL\{version}\bin, где PostgreSQL, установлен
 
-и потом
+и потом делаем следующее
 
 psql -U postgres
 
