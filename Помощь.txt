@@ -49,6 +49,6 @@ psql \! chcp 1251
 ALTER SCHEMA public OWNER TO store_username;
 
 
-Для того чтобы работали тесты надо добавить
+Для того чтобы работали тесты надо добавить следующую команду
 
 python manage.py dumpdata socialaccount.socialapp --output products/fixtures/socialapp.json  (это под виндой)
